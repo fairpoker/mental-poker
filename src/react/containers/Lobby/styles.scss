@@ -1,0 +1,39 @@
+.lobby {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  &__header {
+    flex: 0 0 180px;
+    width: 100%;
+    background: url("/../static/images/Glitched-cards.png") no-repeat right top;
+
+    &--cpg {
+      background: none;
+    }  
+  }
+
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 10px;
+    margin: 0 30px;
+  }
+
+  &__filters {
+    width: 100%;
+    min-height: 40px;
+    margin-bottom: 30px;
+  }
+
+  &--cpg {
+    font-family: 'Roboto', sans-serif;
+  }
+}

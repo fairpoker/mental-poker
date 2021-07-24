@@ -1,0 +1,37 @@
+.ping {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 15px 20px 15px 0;
+
+  &__text {
+    color: $color-green-light;
+    letter-spacing: 1.71px;
+    padding: 0 9px 0 7px;
+
+    &--cpg {
+      color: $color-cpg-blue-light;
+    }
+  }
+
+  &__value {
+    color: $color-green;
+
+    &--cpg {
+      color: $color-cpg-blue-light;
+    }
+  }
+
+  &__icon {
+    font-size: 36px;
+    color: $color-green;
+
+    &--cpg {
+      color: $color-cpg-blue-light;
+    }
+  }
+
+  @media #{$small-desktop} {
+    margin: 0 20px 5px 0;
+  }
+}

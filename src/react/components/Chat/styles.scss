@@ -1,0 +1,85 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  
+  &--transparent {
+    opacity: 0.1;
+  }
+  
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba($color-green, 0.35);
+    box-shadow: inset 0 1px 12px 2px rgba(255,91,175,0.25), 0 0 12px 4px rgba(255,41,121,0.25);
+    overflow: hidden;
+
+    &--cpg-blue {
+      border: 0.5px solid rgba(255,255,255,1);
+      box-shadow: inset 0 1px 12px 2px rgba(52, 165, 255, 0.25), 0 0 12px 4px rgba(52, 165, 255, 0.25);
+    }
+  }
+
+  &__notification,
+  &__input,
+  &__sender {
+    color: $color-green-light;
+    font-size: $font-size-s;
+    letter-spacing: 1.71px;
+    line-height: 16px;
+    padding-bottom: 7px;
+  }
+
+  &__notification {
+    flex-shrink: 0;
+  }
+  
+  &__message {
+    font-weight: 300;
+    color: rgba($color-green, 0.35);
+    line-height: 16px;
+    word-break: break-all;
+  }
+
+  &__sender {
+    margin-right: 5px;
+  }
+  
+  &__enter-message {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__input {
+    display: block;
+    width: 200px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid rgba($color-green, 0.35);	
+    font-weight: 500;
+
+    &:focus {
+      border: 1px solid $color-green;
+      outline: none;
+    }
+
+    &--cpg-blue {
+      border: 0.5px solid rgba(255,255,255,1);
+      box-shadow: inset 0 1px 12px 2px rgba(52, 165, 255, 0.25), 0 0 12px 4px rgba(52, 165, 255, 0.25);
+
+      &:focus {
+        box-shadow: inset 0 1px 12px 2px rgba(52, 165, 255, 0.25), 0 0 12px 4px rgba(52, 165, 255, 0.25);
+        border: 1px solid $color-cpg-blue-light;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: $font-size-l;
+  }
+
+  @media #{$tablet} {
+    display: none;
+  }
+}

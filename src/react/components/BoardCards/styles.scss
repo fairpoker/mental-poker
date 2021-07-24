@@ -1,0 +1,23 @@
+.board-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  &__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 72px;
+    box-shadow: 0 2px 12px 0 rgba(9,9,47,0.5);
+    margin-right: 15px;
+  }
+
+  @media #{$small-desktop} {
+    &__card {
+      height: 70px;
+      width: 52px;
+    }
+  }
+}

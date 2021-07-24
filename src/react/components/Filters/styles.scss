@@ -1,0 +1,31 @@
+.filters {  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &__text {
+    margin: 0 20px;
+    font-size: $font-size-s;
+    font-weight: bold;
+    color: $color-pink;
+    line-height: 14px;
+    letter-spacing: 1.71px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &--cpg-blue {
+      color: $color-cpg-blue-light;
+    }
+  }
+
+  &__select {
+    flex-grow: 1;
+    box-shadow: inset 0 1px 12px 2px rgba(255,91,175,0.25), 0 0 12px 4px rgba(255,41,121,0.25);
+
+    &--cpg-blue {
+      box-shadow: inset 0 1px 12px 2px rgba($color-cpg-blue-light, 0.25), 0 0 12px 4px rgba($color-cpg-blue-light, 0.25);
+    }
+  }
+}

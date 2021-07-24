@@ -1,0 +1,46 @@
+.game {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  &__back-button {
+    margin: 20px 0 0 20px;
+  }
+
+  &__back-button .button {
+    margin: 0 5px 0 5px;
+  }
+
+  &__actions-wrapper {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-basis: 160px;
+  }
+
+  &--cpg {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  @media #{small-height} {
+    &__actions-wrapper {
+      flex-basis: 120px;
+    }
+  }
+
+  @media #{tablets} {
+    &__actions-wrapper {
+      flex-basis: 120px;
+    }
+  }
+}

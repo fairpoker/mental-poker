@@ -1,0 +1,9 @@
+{
+  "source": "./src",
+  "excludes" : ["angular", "table-bundle.js"],
+  "destination": "./docs",
+  "plugins": [
+    {"name": "esdoc-standard-plugin"},
+    {"name": "esdoc-node"}
+  ]
+}

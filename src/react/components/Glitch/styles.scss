@@ -1,0 +1,64 @@
+@include jitter(20, 20, 8);
+@include jitter(20, 21, 8);
+@include jitter(20, 22, 8);
+@include jitter(20, 23, 8);
+@include jitter(20, 24, 8);
+
+.glitch {
+  position: relative;
+  display: inline-block;
+	transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+
+  &__container {
+    position: relative;
+    transform: skew(45deg);
+  }
+
+  &__label {
+    opacity: 1;
+  }
+
+	&__mask {
+		position: absolute;
+
+    height: 20%;
+    width: 100%;
+		overflow: hidden;
+    display: none;
+		> span {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 100%;
+		}
+  }
+
+	$i: 6;
+	$steps: $i;
+	@while $i > 1 {
+		&__mask:nth-child(#{$i}) {
+      top: ($i - 2) * 20%;
+			> span {
+				top: -($i - 2) * 100%;
+			}
+		}
+		$i: $i - 1;
+	}
+
+  $j: 6;
+  $steps: $j;
+  @while $j > 1 {
+    &:hover &__mask:nth-child(#{$j}) {
+      animation: jitter-20-#{19+$j}-8 .3s both;
+    }
+			$j: $j - 1;
+  }
+
+  &:hover &__label {
+    opacity: 0;
+  }
+
+  &:hover &__mask {
+    display: block;
+  }
+}

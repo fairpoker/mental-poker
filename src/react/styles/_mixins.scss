@@ -1,0 +1,13 @@
+@mixin jitter($steps:10, $strX:10, $strY:10){
+  @keyframes jitter-#{$steps}-#{$strX}-#{$strY} {
+    $i: $steps;
+    @while $i > 0 {
+      #{$i/$steps*100}% {
+        $effectFalloff: 1-$i/$steps;
+        $x: (random($strX) - $strX/2) * $effectFalloff + px;
+        left: $x;
+      }
+      $i: $i - 1;
+    }
+ }
+}

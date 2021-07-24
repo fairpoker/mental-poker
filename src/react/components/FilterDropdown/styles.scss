@@ -1,0 +1,38 @@
+.filter-dropdown {  
+  display: flex;
+  flex-direction: column;
+  background-color: rgba($color-black, 0.95);
+  border: 1px solid $color-pink;
+  border-top: 1px solid rgba($color-black, 0.9);
+
+  &--cpg-blue {
+    border: 1px solid $color-cpg-blue-light;
+  }
+  
+  &__option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    vertical-align: center;
+    height: 40px;
+    padding-left: 10px;
+    font-size: $font-size-s;
+    font-weight: bold;
+    line-height: 14px;
+    letter-spacing: 1.71px;
+    color: $color-pink;
+
+    &:hover {
+      background-color: rgba($color-pink, 0.2);
+    }
+
+    &-cpg-blue {
+      color: $color-cpg-blue-light;
+
+      &:hover {
+        background-color: rgba($color-cpg-blue-light, 0.2);
+      }
+    }
+  }
+}

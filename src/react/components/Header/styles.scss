@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 180px;
+  background: url("/../static/images/Mask.png") no-repeat left top;
+
+  &__top-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__back-button {
+    margin: 20px 0 0 20px;
+  }
+
+  &__bottom-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-grow: 1;
+    width: 100%;
+  }
+}

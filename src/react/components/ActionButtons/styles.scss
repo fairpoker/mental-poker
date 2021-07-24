@@ -1,0 +1,59 @@
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  height: 122px;
+  flex-grow: 1;
+  background: url('../../static/images/Rectangle.svg') no-repeat center center;
+  background-size: contain;
+  margin-left: 20px;
+  
+  &--transparent {
+    opacity: 0.1;
+  }
+
+  &__button {
+    margin-right: 40px;
+    justify-content: center;
+    font-size: $font-size-s;
+    width: 90%;
+
+    &--fixed-width {
+      width: 160px;
+    }
+  }
+
+  &__amount-slider {
+    flex-grow: 1;
+  }
+
+  // @media #{$large-desktop} {
+  //   &__button {
+  //     width: 160px;
+  //   }
+  // }
+
+  // @media #{$small-desktop} {
+  //   &__button {
+  //     margin-right: 10px;
+  //   }
+  // }
+
+  // @media #{$tablet} {
+  //   &__button {
+  //     margin-right: 10px;
+  //     width: 160px;
+  //   }
+  // }
+}
+
+.button-spacing {
+  width: 17%;
+  max-width: 210px;
+}
+
+.amount-component-spacing {
+  width: 40%;
+  max-width: 350px;
+}

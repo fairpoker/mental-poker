@@ -1,0 +1,39 @@
+.denomination-dropdown {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #232b38;
+  z-index: 4;
+  
+  &__option {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    height: 40px;
+    width: 100%;
+    padding-left: 20px;
+
+    &:hover {
+      background-color: rgba($color-green, 0.2);
+    }
+  }
+
+  &__balance,
+  &__currency {
+    letter-spacing: 2px;
+    color: $color-green-light;
+    font-size: $font-size-s;
+    line-height: 14px;
+  }
+  
+  &__balance {
+    padding: 0 11px;
+  }
+
+  &__currency {
+    opacity: 0.5;
+  }
+}

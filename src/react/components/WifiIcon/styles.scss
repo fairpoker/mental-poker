@@ -1,0 +1,13 @@
+.wifi-icon {
+  &--green {
+    stroke: $color-green;
+  }
+
+  &--cpg-blue {
+    stroke: $color-cpg-blue-light;
+  }
+
+  &--grey {
+    stroke: #a8a8a8;
+  }
+}

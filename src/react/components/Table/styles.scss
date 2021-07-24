@@ -1,0 +1,106 @@
+.table {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 1440px;
+
+  &--transparent {
+    opacity: 0.1;
+  }
+
+  &__cloth {
+    position: absolute;
+    height: 384px;
+    width: 885px;
+    top: 0;
+    left: 0;
+    bottom: 0; 
+    right: 0; 
+    margin: auto;
+    border: 1px solid $color-green-light;
+    border-radius: 210px;
+    background-image: radial-gradient(circle, #377C40 0%, #102942 100%);
+    box-shadow: inset 0 1px 12px 0 rgba(109,255,208,0.75), 0 2px 12px 0 rgba(109,255,208,0.75), 0 2px 120px 4px rgba(0,253,254,0.25);
+
+    &:after {
+      content: '';
+      position: absolute;
+      background: url("/../static/images/Logo.png") no-repeat center;
+      opacity: 0.5;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__cloth--cpg {
+    &:after {
+      background: url("/../static/images/LogoCPG.png") no-repeat center;
+    }
+  }
+
+  &__column {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    flex-grow: 1;
+    flex-basis: 200px;
+    padding: 40px 0;
+
+    &--center {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 480px;
+      flex-grow: 3;
+      padding: 0;
+    }
+
+    @media #{$small-height} {
+      &--center {
+        height: auto;
+        margin: 0;
+      }
+    }
+
+    &:last-of-type {
+      align-items: flex-start;
+    }
+  }
+
+  &__row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+  }
+
+  &__game-row {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    min-height: 140px;
+  }
+  
+  @media #{$tablet} {
+    &__cloth {
+      height: 300px;
+      border-radius: 210px;
+    }
+  }
+
+  @media #{$small-height} {
+    &__cloth {
+      height: 300px;
+      border-radius: 210px;
+    }
+  }
+
+  @media #{$large-desktop} {
+    &__game-row {
+      flex-grow: 0.5;
+    }
+  }
+}

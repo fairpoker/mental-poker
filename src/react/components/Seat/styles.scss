@@ -1,0 +1,319 @@
+$firstCardPosition: 0;
+$middleCardPosition: 82px;
+$lastCardPosition: 164px;
+
+.seat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  &--margin-bottom {
+    margin-bottom: 30px;
+  }
+
+  &__name,
+  &__balance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    padding: 0 10px;
+    border:  1px solid rgba(255,41,121,0.5);
+    box-shadow: inset 0 1px 12px 2px rgba(255,91,175,0.25), 0 0 12px 4px rgba(255,41,121,0.25);
+  }
+
+  &__name {
+    position: relative;
+    height: 40px;
+    font-size: $font-size-m;
+    line-height: 18px;
+    color: $color-pink;
+    background-color: #141328;
+
+    &--clickable {
+      cursor: pointer;
+    }
+
+    &--with-margin {
+      margin-bottom: 30px;
+    }
+
+    &--active {
+      border: 2px solid $color-pink;
+      box-shadow: 0 2px 24px 0 $color-pink;
+    }
+  }
+
+  &__countdown-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-pink;
+    opacity: 0;
+
+    &--count-down {
+      opacity: .35;
+      animation-name: countdownBar;
+      animation-timing-function: linear;
+    }
+
+    &--cpg-blue {
+      background-color: $color-cpg-blue-pale;
+    }
+  }
+
+  &__counter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background-color: $color-pink;
+    color: #121124;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+
+    &--cpg-blue {
+      background-color: $color-cpg-blue-pale;
+    }
+  }
+
+  &__balance {
+    position: relative;
+    height: 20px;
+    color: $color-green-light;
+    background-color: #212040;
+    border-top: none;
+    font-size: $font-size-s;
+    letter-spacing: 1.71px;
+    line-height: 14px;
+    font-weight: 300;
+
+    &--placeholder {
+      visibility: hidden;
+    }
+  }
+
+  &__name--cpg-blue,
+  &__balance--cpg-blue {
+    color: white;
+    background-color: $color-cpg-blue-dark;
+    border:  0.5px solid white;
+    box-shadow: inset 0 1px 12px 2px rgba(52, 165, 255, 0.25), 0 0 12px 4px rgba(52, 165, 255, 0.25);
+  }
+
+  &__dealer-marker {
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    border: 1px solid $color-green;
+    background-color: $color-green;
+    box-shadow: 0 0 12px 4px rgba(109,255,224,0.25);
+    font-family: 'Arial', sans-serif;
+    font-size: $font-size-xs;
+    color: #121124;
+    letter-spacing: normal;
+  }
+
+  &__bet-amount-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--top {
+      top:-20px;
+      margin-bottom: 10px;
+    }
+
+    &--right {
+      left: calc(100% + 10px);
+    }
+
+    &--bottom {
+      bottom: -30px;
+      margin-bottom: 10px;
+    }
+
+    &--left {
+      left: -65px;
+    }
+  }
+
+  &__bet-amount {
+    font-size: $font-size-l;
+    color: $color-green-light;
+    letter-spacing: normal;
+    line-height: 18px;
+    margin-left: 25px;
+    transition: opacity .5s linear;
+
+    &--fade-out {
+      opacity: 0;
+    }
+  }
+
+  &__bet-chip-image {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    transition: all .5s linear;
+  }
+
+  &__notification {
+    position: absolute;
+    top: 30px;
+    color: $color-pink;
+    font-size: $font-size-xs;
+    text-shadow: 0 0 10px $color-green-light;
+
+    &--right {
+      right: 0;
+    }
+  }
+
+  &__shuffle-container {
+    position: relative;
+    width: 236px;
+    height: 110px;
+  }
+
+  &__shuffle-card {
+    position: absolute;
+    top: 0;
+    width: 72px;
+    height: 100px;
+    background: url('/../static/images/cardLocked.png') no-repeat;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+
+    &:first-child {
+      left: $firstCardPosition;
+      animation-name: shuffleFirstCard;
+    }
+
+    &:nth-child(2) {
+      left: $middleCardPosition;
+      animation-name: shuffleMiddleCard;
+    }
+
+    &:last-child {
+      left: $lastCardPosition;
+      animation-name: shuffleLastCard;
+    }
+  }
+
+  @media #{$small-desktop} {
+    &__name,
+    &__balance {
+      width: 160px;
+      font-size: $font-size-s;
+    }
+
+    &__name {
+      height: 30px;
+    }
+  }
+}
+
+@keyframes countdownBar {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+
+@keyframes shuffleFirstCard {
+  0% {
+    left: $firstCardPosition;
+  }
+
+  30% {
+    left: $middleCardPosition;
+  }
+
+  35% {
+    left: $middleCardPosition;
+  }
+
+  65% {
+    left: $lastCardPosition;
+  }
+
+  70% {
+    left: $lastCardPosition;
+  }
+
+  100% {
+    left: $firstCardPosition;
+  }
+}
+
+@keyframes shuffleMiddleCard {
+  0% {
+    left: $middleCardPosition;
+  }
+
+  30% {
+    left: $lastCardPosition;
+  }
+
+  35% {
+    left: $lastCardPosition;
+  }
+
+  65% {
+    left: $firstCardPosition;
+  }
+
+  70% {
+    left: $firstCardPosition;
+  }
+
+  100% {
+    left: $middleCardPosition;
+  }
+}
+
+@keyframes shuffleLastCard {
+  0% {
+    left: $lastCardPosition;
+  }
+
+  30% {
+    left: $firstCardPosition;
+  }
+
+  35% {
+    left: $firstCardPosition;
+  }
+
+  65% {
+    left: $middleCardPosition;
+  }
+
+  70% {
+    left: $middleCardPosition;
+  }
+
+  100% {
+    left: $lastCardPosition;
+  }
+}

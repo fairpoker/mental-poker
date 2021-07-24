@@ -1,0 +1,52 @@
+.link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 40px;
+  border: 1px solid $color-green;
+  box-shadow: 0 0 12px 4px rgba(109,255,224,0.25);
+  padding: 0 28px;
+  clip-path: polygon(0% 0%, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%);
+  -webkit-clip-path: polygon(0% 0%, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%);
+  cursor: pointer;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 14.14px;
+    height: 14.14px;
+    border: 1px solid #6DFFE0;
+    box-shadow: 0 0 12px 4px rgba(109,255,224,0.25);
+    right: -8px;
+    bottom: -10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+  }
+
+  &--cpg-blue {
+    border: 1px solid $color-cpg-blue-light;
+  }
+
+  &__anchor {
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.71px;
+  }
+
+  &__text {
+    color: $color-green;
+
+    &--cpg-blue {
+      color: $color-cpg-blue-light;
+    }
+  }
+}
+
+@supports (-ms-ime-align:auto) {
+  .link {
+    &:after {
+      content: none;
+    }
+  }
+}

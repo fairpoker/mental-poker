@@ -1,0 +1,148 @@
+.tables-list {
+  $root: &;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  &__table-wrapper {
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid $color-green-light;
+    box-shadow: 0 2px 12px 4px rgba(0,253,254,0.25);
+
+    &--upper {
+      padding-bottom: 0;
+      border-bottom: none;
+      min-height: 50px;
+    }
+
+    &--bottom {
+      padding-top: 0;
+      border-top: none;
+      flex-grow: 1;
+      min-height: 120px;
+    }
+  }
+
+  &__table {
+    width: 100%;
+  }
+
+  &__table-cell,
+  &__table-header {
+    display: flex;
+    flex: 1 0 0;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 40px;
+    border: none;
+    letter-spacing: 2px;
+  }
+  
+  &__table-cell {
+    text-align: center;
+    justify-content: center;
+    
+    &--bold {
+      font-weight: bold;
+    }
+  }
+  
+  &__table-cell-text {
+    color: $color-green-light;
+    font-size: $font-size-l;
+    line-height: 40px;
+    
+    &:not(#{$root}__table-cell--bold) {
+      font-weight: 300;
+    }
+  }
+
+  &__table-cell-curr-rate {
+    opacity: 0.7;
+    font-size: 9px;
+    margin-left: 3px;
+  }
+
+  @media #{$tablet} {
+    &__table-cell-curr-rate {
+      display: none;
+    }
+  }
+
+  &__table-header {
+    background-color: $color-pink;
+    line-height: 16px;
+    min-height: 40px;
+
+    &--cpg-blue {
+      background-color: $color-cpg-blue-light;
+    }
+  }
+  
+  &__table-header-text {
+    flex-grow: 1;
+    color: $color-blue-dark;
+
+    &-white {
+      color: white;
+    }
+  }
+
+  &__sort-button {
+    margin-right: 10px;
+    font-size: 6px;
+    color: $color-blue-dark;
+
+    &--upside-down {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__table-row {
+    display: flex;
+    min-height: 40px;
+    cursor: pointer;
+
+    &--even {
+      background-color: rgba($color-green-light, 0.1);
+    }
+
+    &:hover {
+      background-color: $color-green;
+      color: $color-blue-dark;
+
+      #{$root}__table-cell-text {
+        color: $color-blue-dark;
+        font-weight: 300;
+      }
+    }
+
+    &--cpg-blue {
+      &:hover{
+        background-color: $color-cpg-blue-pale;
+        color: white;
+
+        #{$root}__table-cell-text {
+          color: $color-cpg-blue-dark;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+tbody {
+  clip-path: polygon(0% 0%, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%);
+  -webkit-clip-path: polygon(0% 0%, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%);
+}
+
+.icon-arrows {
+  font-size: 14px;
+}
+
+.icon-lock {
+  margin-right: 7px;
+}

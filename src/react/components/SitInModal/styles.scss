@@ -1,0 +1,209 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  &__close-button {
+    position: absolute;
+    z-index: -1;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    background-color: #0F272B;
+    border-top: 1px solid rgba($color-pink, 0.5);
+    border-right: 1px solid rgba($color-pink, 0.5);
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: -6px;
+      content: '';
+      width: 28.28px;
+      height: 56.57px;
+      background-color: #0F272B;
+      border-top: 1px solid rgba($color-pink, 0.5);
+      border-bottom: 1px solid rgba($color-pink, 0.5);
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+    }
+
+    &--cpg-blue {
+      border-top: 0.5px solid white;
+      border-right: 0.5px solid white;
+
+      &:before {
+        border-top: 0.5px solid white;
+        border-bottom: 0.5px solid white;
+      }
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    height: 440px;
+    width: 500px;
+    border: 1px solid rgba($color-pink,0.5);
+    background-color: rgba($color-black, 0.5);
+    box-shadow: 0 0 100px 0 rgba($color-pink, 0.9);
+
+    &--long {
+      height: 500px;
+    }
+
+    &--cpg-blue {
+      border:  0.5px solid white;
+      box-shadow: inset 0 1px 12px 2px rgba(52, 165, 255, 0.25), 0 0 12px 4px rgba(52, 165, 255, 0.25);
+    }
+  }
+
+  &__header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba($color-pink,0.5);
+
+    &--cpg-blue {
+      border-bottom: 0.5px solid white;
+    }
+  }
+
+  &__header-title {
+    display: flex;
+    align-items: center;
+    padding-left: 60px;
+    color: $color-pink;	
+    font-size: $font-size-xxl;	
+    letter-spacing: 1.5px;
+    line-height: 29px;
+
+    &--white {
+      color: white;
+    }
+  }
+
+  &__close-icon {
+    color: $color-pink;
+    cursor: pointer;
+
+    &--white {
+      color: white;
+    }
+  }
+
+  &__dash-icon {
+    color: $color-green-light;
+    font-size: 36px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 40px 60px 60px 60px;
+  }
+
+  &__buy-in-info,
+  &__balance-info,
+  &__form-label {
+    font-size: $font-size-l;	
+    color: $color-green-light;
+    letter-spacing: 1.5px;
+    font-weight: 300;
+    line-height: 18px;
+  }
+
+  &__buy-in-info {
+    letter-spacing: 1.56px;
+    line-height: 40px;
+
+    &--bold {
+      font-weight: 500;
+    }
+  }
+  
+  &__balance-info {	
+    text-align: center;
+    background-color: rgba($color-pink, 0.35);
+    font-weight: 300;
+    padding: 0 3px;
+
+    &--bold {
+      font-weight: 500;
+    }
+
+    &--cpg-blue {
+      background-color: rgba($color-cpg-blue-light, 0.35);
+    }
+  }
+
+  &__form {
+    margin-top: 40px;
+  }
+
+  &__form-label {
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  &__form-input {
+    display: flex;
+  }
+
+  &__password {
+    margin-bottom: 10px;
+  }
+  
+  &__input {
+    height: 40px;
+    border: 1px solid #D1FFFF;
+    box-shadow: inset 0 1px 12px 2px rgba(255,91,175,0.25), 0 0 12px 4px rgba(255,41,121,0.25);
+    font-size: $font-size-l;
+    padding: 10px;
+    color: $color-green-light;
+    letter-spacing: 1.5px;
+
+    &:focus {
+      border: 1px solid rgba($color-pink,0.5);
+      outline: none;
+    }
+
+    &--cpg-blue {
+      box-shadow: inset 0 1px 12px 2px rgba(52, 165, 255, 0.25), 0 0 12px 4px rgba(52, 165, 255, 0.25);
+      border: 0.5px solid white;
+
+      &:focus {
+        border: 0.5px solid $color-cpg-blue-light;
+      }
+    }
+  }
+
+  &__input,
+  &__button {
+    flex-grow: 1;
+  }
+
+  &__error {
+    padding-top: 10px;
+    color: $color-pink;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-green, 0.25);
+  }
+}

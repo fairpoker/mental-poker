@@ -1,0 +1,56 @@
+services:
+  - docker:dind
+
+stages:
+  - Test
+  - Build and push image stage
+  - Build and push image prod
+  - Build and push image react
+  - Deploy
+
+test:
+  image: node:latest
+  stage: Test
+  script:
+   - npm install
+   - npm run test
+
+docker build prod:
+  image: docker:stable
+  stage: Build and push image prod
+  only:
+  - master
+  script:
+  - docker build -t fairpoker/mental-poker:prod .
+  - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
+  - docker push fairpoker/mental-poker:prod
+
+docker build stage:
+  image: docker:stable
+  stage: Build and push image stage
+  only:
+  - dev
+  script:
+  - docker build -t fairpoker/mental-poker:stage .
+  - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
+  - docker push fairpoker/mental-poker:stage
+  
+docker build:
+  image: docker:stable
+  stage: Build and push image react
+  only:
+  - react-app
+  script:
+  - docker build -t fairpoker/mental-poker:react-app .
+  - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
+  - docker push fairpoker/mental-poker:react-app
+  
+  
+deploy:
+  image: stackahoy/stackahoy-cli
+  stage: Deploy
+  only:
+    - react-app
+    - dev
+  script:
+    - stackahoy deploy -t $STACKAHOY_TOKEN -b $CI_COMMIT_REF_NAME -r $REPO_ID --skip-delivery

@@ -1,0 +1,121 @@
+.amount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__input {
+    height: 40px;
+    border: 1px solid $color-green;
+    box-shadow: 0 0 12px 4px rgba(109,255,224,0.25);
+    font-size: $font-size-l;
+    padding: 10px;
+    color: $color-green-light;
+    letter-spacing: 1.5px;
+    max-width: 100px;
+
+    &:focus {
+      border: 1px solid rgba($color-pink,0.5);
+      outline: none;
+    }
+
+    &--cpg-blue {
+      border: 0.5px solid white;
+      box-shadow: 0 0 12px 4px rgba($color-cpg-blue-light,0.25);
+
+      &:focus {
+        border: 0.5px solid $color-cpg-blue-light;
+      }
+    }
+  }
+
+  &__slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 240px;
+    margin-left: 20px;
+  }
+
+  &__slider-row {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__button {
+    flex-grow: 1;
+    background-color: $color-green;
+    border: 0;
+    border-radius: 0;
+    color: #171756;
+    height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    margin-top: 1px;
+    margin-right: 1px;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &--dark {
+      background-color: rgba($color-green, 0.25);
+      flex-grow: 0;
+      color: $color-green;
+      padding: 0 20px;
+
+      &--cpg-blue {
+        background-color: rgba($color-cpg-blue-light, 0.25);
+        color: white;
+      }
+    }
+
+    &--cpg-blue {
+      background-color: $color-cpg-blue-light;
+    }
+  }
+
+  &__slider {
+    position: relative;
+    flex-grow: 1;
+    margin-right: 1px;
+    background-color: rgba($color-green, 0.25);
+
+    &--cpg-blue {
+      background-color: rgba($color-cpg-blue-light, 0.25);
+    }
+  }
+
+  &__slider-handler-container {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    left: 15px;
+    height: 2px;
+    background: $color-green;
+    transform: translateY(-50%);
+
+    &--white {
+      background: white;
+    }
+  }
+
+  &__slider-handler {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 12px;
+    height: 7px;
+    background: $color-green;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+
+    &--white {
+      background: white;
+    }
+  }
+}

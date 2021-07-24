@@ -1,0 +1,21 @@
+.checkbox {
+  flex: 0 0 40px;
+  height: 40px;
+  margin-left: 20px;
+  border: 1px solid $color-pink;
+  box-shadow: inset 0 1px 12px 2px rgba(255,91,175,0.25), 0 0 12px 4px rgba(255,41,121,0.25);
+
+  &--cpg-blue {
+    border: 1px solid $color-cpg-blue-light;
+    box-shadow: inset 0 1px 12px 2px rgba($color-cpg-blue-light,0.25), 0 0 12px 4px rgba($color-cpg-blue-light,0.25);
+  }
+
+  &--checked {
+    font-size: 38px;
+    color: $color-pink;
+
+    &--cpg-blue {
+      color: $color-cpg-blue-light;
+    }
+  }
+}

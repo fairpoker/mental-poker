@@ -1,0 +1,154 @@
+version: "3"
+
+# NOTE: You have to setup your hosts file such that it routes corretly to the domains set up for the backend services!
+# Follow the below steps to set up your development environment
+#
+# 1. Add the following entries to your hosts file:
+#
+# 127.0.0.1       front.traefik
+# 127.0.0.1       game.front.traefik
+#
+# 2. Create an external docker network with the following commnad:
+#  $ docker network create -d overlay traefik-net
+#
+# 3. Set up the source volume of the game service to point to your development dicretory. (This lets us see our code changes immediately)
+#  For example, if I have my code at ~/dev/poker-js , then I set it up as follows:
+#   - "~/dev/poker-js:/app"
+#
+# 4. Deploy with:
+#  $ docker stack deploy -c docker-compose.yml poker --with-registry-auth
+#
+# To enter the site, hit http://front.traefik/ on your browser
+#
+# 5. When you make a code change locally and want to see the result, just redeploy the game service with the following command:
+#  $ docker service update poker_game --force
+
+services:
+  # NOTE: You have to setup your hosts file & set up a docker network as shown above for the load balancer to work!
+  traefik:
+    image: traefik:v1.7
+    command:
+      --docker \
+      --docker.watch \
+      --docker.swarmMode \
+      --api
+    ports:
+      - 80:80
+      - 25581:8080
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik-net
+
+  # The mental poker game
+  game:
+    image: fairpoker/mental-poker:stage
+    depends_on:
+      - redis
+      - db
+    volumes:
+      - "~/dev/poker-js:/app" # NOTE: Mount the source directory to your working directory
+    environment:
+      - PGHOST=db
+      - PGUSER=postgres
+      - PGPASSWORD=passhere
+      - PGDATABASE=poker
+      - ENVIRONMENT=DEV
+      - MAIN_URL=http://front.traefik
+      - LOG_LEVEL=debug
+      - TIMEOUT_SEC=15
+    networks:
+      - net
+      - traefik-net
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          memory: 150M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.frontend.rule=Host:game.front.traefik"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.backend.loadbalancer.sticky=true"
+        - "traefik.port=3000"
+
+  # This instance of redis is used for communicaton between the poker game containers
+  redis-game:
+    image: redis
+    command: redis-server --appendonly yes
+    volumes:
+      - devredis:/data
+    networks:
+      - net
+
+  # The main fair.poker website
+  front:
+    image: fairpoker/poker-front:stage
+    depends_on:
+      - redis
+      - db
+    environment:
+      - PORT=8888
+      - SERVER_ADDR=104.248.159.81
+      - LN_NODE_ADDR=104.248.159.81
+      - LN_NODE_PORT_RPC=10012
+      - LN_NODE_PORT_P2P=9736
+      - GAME_URL=http://game.front.traefik # For redirects
+      - PGHOST=db
+      - NO_NEW_ACCOUNT_ADDR=TRUE
+      - PGPASSWORD=passhere
+      - DOMAIN_NAME=front.traefik
+      - NETWORK=TESTNET
+      - ENABLE_EMAILS=FALSE
+      - ENABLE_LND=FALSE
+      - JWT_COOKIE_KEY=coookiekeyANmGHCMZXMn54HjBPrWYN4Nyw3Km33at9X # Dev JWT key
+    networks:
+      - net
+      - traefik-net
+    deploy:
+      replicas: 2
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=8888"
+        - "traefik.docker.network=traefik-net"
+        - "traefik.frontend.rule=Host:front.traefik"
+        - "traefik.backend.loadbalancer.sticky=true"
+
+  # The main database
+  db:
+    image: postgres:10
+    volumes:
+      - devpgdb:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=passhere
+    networks:
+      - net
+
+  # This instance of redis is responsible for session tokens and works mostly as a link between main site & game
+  redis:
+    image: redis
+    command: redis-server
+    networks:
+      - net
+
+  # Database explorer
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - net
+
+volumes:
+  devpgdb:
+  devredis:
+
+# NOTE: Use the following command to create the external traefik network:
+# $ docker network create -d overlay traefik-net
+networks:
+  net:
+  traefik-net:
+    external: true

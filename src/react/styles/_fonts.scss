@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/../static/fonts/icomoon.eot');
+  src:  url('/../static/fonts/icomoon.eot') format('embedded-opentype'),
+    url('/../static/fonts/icomoon.woff2') format('woff2'),
+    url('/../static/fonts/icomoon.ttf') format('truetype'),
+    url('/../static/fonts/icomoon.woff') format('woff'),
+    url('/../static/fonts/icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
+
+$font-size-xs: 11px;
+$font-size-s: 12px;
+$font-size-m: 13px;
+$font-size-l: 14px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
